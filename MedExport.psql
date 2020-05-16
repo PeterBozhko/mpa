@@ -1,0 +1,1068 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2
+-- Dumped by pg_dump version 12.2
+
+-- Started on 2020-05-14 21:39:21
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 215 (class 1259 OID 16451)
+-- Name: Anamnesis; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Anamnesis" (
+    "ID" integer NOT NULL
+);
+
+
+ALTER TABLE public."Anamnesis" OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16449)
+-- Name: Anamnesis_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Anamnesis_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Anamnesis_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2954 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: Anamnesis_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Anamnesis_ID_seq" OWNED BY public."Anamnesis"."ID";
+
+
+--
+-- TOC entry 207 (class 1259 OID 16413)
+-- Name: Disease; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Disease" (
+    "ID" integer NOT NULL,
+    "Name" character varying(250) NOT NULL
+);
+
+
+ALTER TABLE public."Disease" OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16411)
+-- Name: Disease_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Disease_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Disease_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2955 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: Disease_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Disease_ID_seq" OWNED BY public."Disease"."ID";
+
+
+--
+-- TOC entry 205 (class 1259 OID 16405)
+-- Name: Doctor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Doctor" (
+    "ID" integer NOT NULL,
+    "Name " character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."Doctor" OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16403)
+-- Name: Doctor_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Doctor_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Doctor_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2956 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: Doctor_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Doctor_ID_seq" OWNED BY public."Doctor"."ID";
+
+
+--
+-- TOC entry 209 (class 1259 OID 16421)
+-- Name: Medicine; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Medicine" (
+    "ID" integer NOT NULL,
+    "Name" character varying(250) NOT NULL,
+    "Active_substance" character varying(250) NOT NULL,
+    "Incompatibility" text
+);
+
+
+ALTER TABLE public."Medicine" OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16397)
+-- Name: Patient; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Patient" (
+    "ID" integer NOT NULL,
+    "Name" character varying(50) NOT NULL,
+    "Last_name" character varying(50) NOT NULL,
+    "Age" integer NOT NULL,
+    "Gender" bytea
+);
+
+
+ALTER TABLE public."Patient" OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16395)
+-- Name: Patient_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Patient_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Patient_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2957 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: Patient_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Patient_ID_seq" OWNED BY public."Patient"."ID";
+
+
+--
+-- TOC entry 211 (class 1259 OID 16432)
+-- Name: Side_effects; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Side_effects" (
+    "ID" integer NOT NULL,
+    "Name" character varying(250) NOT NULL,
+    "Seriousness" character varying(10)
+);
+
+
+ALTER TABLE public."Side_effects" OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16430)
+-- Name: Side_effects_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Side_effects_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Side_effects_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2958 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: Side_effects_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Side_effects_ID_seq" OWNED BY public."Side_effects"."ID";
+
+
+--
+-- TOC entry 213 (class 1259 OID 16443)
+-- Name: Side_effects_of_medicine; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Side_effects_of_medicine" (
+    "ID" integer NOT NULL,
+    "Frequency" character varying(50),
+    "Medicine_id" integer NOT NULL,
+    "Side_effects_id" integer NOT NULL
+);
+
+
+ALTER TABLE public."Side_effects_of_medicine" OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16441)
+-- Name: Side_effects_of_medicine_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Side_effects_of_medicine_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Side_effects_of_medicine_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2959 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: Side_effects_of_medicine_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Side_effects_of_medicine_ID_seq" OWNED BY public."Side_effects_of_medicine"."ID";
+
+
+--
+-- TOC entry 225 (class 1259 OID 16535)
+-- Name: Side_effects_of_medicine_Medicine_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Side_effects_of_medicine_Medicine_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Side_effects_of_medicine_Medicine_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2960 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: Side_effects_of_medicine_Medicine_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Side_effects_of_medicine_Medicine_id_seq" OWNED BY public."Side_effects_of_medicine"."Medicine_id";
+
+
+--
+-- TOC entry 226 (class 1259 OID 16542)
+-- Name: Side_effects_of_medicine_Side_effects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Side_effects_of_medicine_Side_effects_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Side_effects_of_medicine_Side_effects_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2961 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: Side_effects_of_medicine_Side_effects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Side_effects_of_medicine_Side_effects_id_seq" OWNED BY public."Side_effects_of_medicine"."Side_effects_id";
+
+
+--
+-- TOC entry 221 (class 1259 OID 16497)
+-- Name: disease_anamnesis; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.disease_anamnesis (
+    "Disease_id" integer NOT NULL,
+    "Anamnesis_id" integer NOT NULL
+);
+
+
+ALTER TABLE public.disease_anamnesis OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16495)
+-- Name: disease_anamnesis_Anamnesis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."disease_anamnesis_Anamnesis_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."disease_anamnesis_Anamnesis_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2962 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: disease_anamnesis_Anamnesis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."disease_anamnesis_Anamnesis_id_seq" OWNED BY public.disease_anamnesis."Anamnesis_id";
+
+
+--
+-- TOC entry 219 (class 1259 OID 16493)
+-- Name: disease_anamnesis_Disease_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."disease_anamnesis_Disease_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."disease_anamnesis_Disease_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2963 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: disease_anamnesis_Disease_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."disease_anamnesis_Disease_id_seq" OWNED BY public.disease_anamnesis."Disease_id";
+
+
+--
+-- TOC entry 208 (class 1259 OID 16419)
+-- Name: medicine_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."medicine_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."medicine_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2964 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: medicine_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."medicine_ID_seq" OWNED BY public."Medicine"."ID";
+
+
+--
+-- TOC entry 224 (class 1259 OID 16518)
+-- Name: medicine_anamnesis; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.medicine_anamnesis (
+    "Medicine_id" integer NOT NULL,
+    "Anamnesis_id" integer NOT NULL
+);
+
+
+ALTER TABLE public.medicine_anamnesis OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 16516)
+-- Name: medicine_anamnesis_Anamnesis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."medicine_anamnesis_Anamnesis_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."medicine_anamnesis_Anamnesis_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2965 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: medicine_anamnesis_Anamnesis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."medicine_anamnesis_Anamnesis_id_seq" OWNED BY public.medicine_anamnesis."Anamnesis_id";
+
+
+--
+-- TOC entry 222 (class 1259 OID 16514)
+-- Name: medicine_anamnesis_Medicine_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."medicine_anamnesis_Medicine_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."medicine_anamnesis_Medicine_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2966 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: medicine_anamnesis_Medicine_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."medicine_anamnesis_Medicine_id_seq" OWNED BY public.medicine_anamnesis."Medicine_id";
+
+
+--
+-- TOC entry 218 (class 1259 OID 16476)
+-- Name: patient_doctor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.patient_doctor (
+    "Patient_id" integer NOT NULL,
+    "Doctor_id" integer NOT NULL
+);
+
+
+ALTER TABLE public.patient_doctor OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16474)
+-- Name: patient_doctor_Doctor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."patient_doctor_Doctor_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."patient_doctor_Doctor_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2967 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: patient_doctor_Doctor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."patient_doctor_Doctor_id_seq" OWNED BY public.patient_doctor."Doctor_id";
+
+
+--
+-- TOC entry 216 (class 1259 OID 16472)
+-- Name: patient_doctor_Patient_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."patient_doctor_Patient_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."patient_doctor_Patient_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2968 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: patient_doctor_Patient_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."patient_doctor_Patient_id_seq" OWNED BY public.patient_doctor."Patient_id";
+
+
+--
+-- TOC entry 2762 (class 2604 OID 16454)
+-- Name: Anamnesis ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Anamnesis" ALTER COLUMN "ID" SET DEFAULT nextval('public."Anamnesis_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2756 (class 2604 OID 16416)
+-- Name: Disease ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Disease" ALTER COLUMN "ID" SET DEFAULT nextval('public."Disease_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2755 (class 2604 OID 16408)
+-- Name: Doctor ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Doctor" ALTER COLUMN "ID" SET DEFAULT nextval('public."Doctor_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2757 (class 2604 OID 16424)
+-- Name: Medicine ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Medicine" ALTER COLUMN "ID" SET DEFAULT nextval('public."medicine_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2754 (class 2604 OID 16400)
+-- Name: Patient ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Patient" ALTER COLUMN "ID" SET DEFAULT nextval('public."Patient_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2758 (class 2604 OID 16435)
+-- Name: Side_effects ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects" ALTER COLUMN "ID" SET DEFAULT nextval('public."Side_effects_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2759 (class 2604 OID 16446)
+-- Name: Side_effects_of_medicine ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects_of_medicine" ALTER COLUMN "ID" SET DEFAULT nextval('public."Side_effects_of_medicine_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2760 (class 2604 OID 16537)
+-- Name: Side_effects_of_medicine Medicine_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects_of_medicine" ALTER COLUMN "Medicine_id" SET DEFAULT nextval('public."Side_effects_of_medicine_Medicine_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2761 (class 2604 OID 16544)
+-- Name: Side_effects_of_medicine Side_effects_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects_of_medicine" ALTER COLUMN "Side_effects_id" SET DEFAULT nextval('public."Side_effects_of_medicine_Side_effects_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2765 (class 2604 OID 16500)
+-- Name: disease_anamnesis Disease_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.disease_anamnesis ALTER COLUMN "Disease_id" SET DEFAULT nextval('public."disease_anamnesis_Disease_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2766 (class 2604 OID 16501)
+-- Name: disease_anamnesis Anamnesis_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.disease_anamnesis ALTER COLUMN "Anamnesis_id" SET DEFAULT nextval('public."disease_anamnesis_Anamnesis_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2767 (class 2604 OID 16521)
+-- Name: medicine_anamnesis Medicine_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.medicine_anamnesis ALTER COLUMN "Medicine_id" SET DEFAULT nextval('public."medicine_anamnesis_Medicine_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2768 (class 2604 OID 16522)
+-- Name: medicine_anamnesis Anamnesis_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.medicine_anamnesis ALTER COLUMN "Anamnesis_id" SET DEFAULT nextval('public."medicine_anamnesis_Anamnesis_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2763 (class 2604 OID 16479)
+-- Name: patient_doctor Patient_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient_doctor ALTER COLUMN "Patient_id" SET DEFAULT nextval('public."patient_doctor_Patient_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2764 (class 2604 OID 16480)
+-- Name: patient_doctor Doctor_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient_doctor ALTER COLUMN "Doctor_id" SET DEFAULT nextval('public."patient_doctor_Doctor_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2937 (class 0 OID 16451)
+-- Dependencies: 215
+-- Data for Name: Anamnesis; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Anamnesis" ("ID") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2929 (class 0 OID 16413)
+-- Dependencies: 207
+-- Data for Name: Disease; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Disease" ("ID", "Name") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2927 (class 0 OID 16405)
+-- Dependencies: 205
+-- Data for Name: Doctor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Doctor" ("ID", "Name ") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2931 (class 0 OID 16421)
+-- Dependencies: 209
+-- Data for Name: Medicine; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Medicine" ("ID", "Name", "Active_substance", "Incompatibility") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2925 (class 0 OID 16397)
+-- Dependencies: 203
+-- Data for Name: Patient; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Patient" ("ID", "Name", "Last_name", "Age", "Gender") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2933 (class 0 OID 16432)
+-- Dependencies: 211
+-- Data for Name: Side_effects; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Side_effects" ("ID", "Name", "Seriousness") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2935 (class 0 OID 16443)
+-- Dependencies: 213
+-- Data for Name: Side_effects_of_medicine; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Side_effects_of_medicine" ("ID", "Frequency", "Medicine_id", "Side_effects_id") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2943 (class 0 OID 16497)
+-- Dependencies: 221
+-- Data for Name: disease_anamnesis; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.disease_anamnesis ("Disease_id", "Anamnesis_id") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2946 (class 0 OID 16518)
+-- Dependencies: 224
+-- Data for Name: medicine_anamnesis; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.medicine_anamnesis ("Medicine_id", "Anamnesis_id") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2940 (class 0 OID 16476)
+-- Dependencies: 218
+-- Data for Name: patient_doctor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.patient_doctor ("Patient_id", "Doctor_id") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2969 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: Anamnesis_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Anamnesis_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2970 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: Disease_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Disease_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2971 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: Doctor_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Doctor_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2972 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: Patient_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Patient_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2973 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: Side_effects_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Side_effects_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2974 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: Side_effects_of_medicine_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Side_effects_of_medicine_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2975 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: Side_effects_of_medicine_Medicine_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Side_effects_of_medicine_Medicine_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2976 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: Side_effects_of_medicine_Side_effects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Side_effects_of_medicine_Side_effects_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2977 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: disease_anamnesis_Anamnesis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."disease_anamnesis_Anamnesis_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2978 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: disease_anamnesis_Disease_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."disease_anamnesis_Disease_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2979 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: medicine_ID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."medicine_ID_seq"', 1, false);
+
+
+--
+-- TOC entry 2980 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: medicine_anamnesis_Anamnesis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."medicine_anamnesis_Anamnesis_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2981 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: medicine_anamnesis_Medicine_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."medicine_anamnesis_Medicine_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2982 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: patient_doctor_Doctor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."patient_doctor_Doctor_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2983 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: patient_doctor_Patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."patient_doctor_Patient_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2782 (class 2606 OID 16456)
+-- Name: Anamnesis Anamnesis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Anamnesis"
+    ADD CONSTRAINT "Anamnesis_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2774 (class 2606 OID 16418)
+-- Name: Disease Disease_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Disease"
+    ADD CONSTRAINT "Disease_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2772 (class 2606 OID 16410)
+-- Name: Doctor Doctor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Doctor"
+    ADD CONSTRAINT "Doctor_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2770 (class 2606 OID 16402)
+-- Name: Patient Patient_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Patient"
+    ADD CONSTRAINT "Patient_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2780 (class 2606 OID 16448)
+-- Name: Side_effects_of_medicine Side_effects_of_medicine_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects_of_medicine"
+    ADD CONSTRAINT "Side_effects_of_medicine_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2778 (class 2606 OID 16440)
+-- Name: Side_effects Side_effects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects"
+    ADD CONSTRAINT "Side_effects_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2786 (class 2606 OID 16503)
+-- Name: disease_anamnesis disease_anamnesis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.disease_anamnesis
+    ADD CONSTRAINT disease_anamnesis_pkey PRIMARY KEY ("Disease_id", "Anamnesis_id");
+
+
+--
+-- TOC entry 2788 (class 2606 OID 16524)
+-- Name: medicine_anamnesis medicine_anamnesis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.medicine_anamnesis
+    ADD CONSTRAINT medicine_anamnesis_pkey PRIMARY KEY ("Medicine_id", "Anamnesis_id");
+
+
+--
+-- TOC entry 2776 (class 2606 OID 16426)
+-- Name: Medicine medicine_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Medicine"
+    ADD CONSTRAINT medicine_pkey PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2784 (class 2606 OID 16482)
+-- Name: patient_doctor patient_doctor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient_doctor
+    ADD CONSTRAINT patient_doctor_pkey PRIMARY KEY ("Patient_id", "Doctor_id");
+
+
+--
+-- TOC entry 2795 (class 2606 OID 16509)
+-- Name: disease_anamnesis FK_anamnesis_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.disease_anamnesis
+    ADD CONSTRAINT "FK_anamnesis_id" FOREIGN KEY ("Anamnesis_id") REFERENCES public."Anamnesis"("ID");
+
+
+--
+-- TOC entry 2797 (class 2606 OID 16530)
+-- Name: medicine_anamnesis FK_anamnesis_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.medicine_anamnesis
+    ADD CONSTRAINT "FK_anamnesis_id" FOREIGN KEY ("Anamnesis_id") REFERENCES public."Anamnesis"("ID");
+
+
+--
+-- TOC entry 2794 (class 2606 OID 16504)
+-- Name: disease_anamnesis FK_disease_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.disease_anamnesis
+    ADD CONSTRAINT "FK_disease_id" FOREIGN KEY ("Disease_id") REFERENCES public."Disease"("ID");
+
+
+--
+-- TOC entry 2793 (class 2606 OID 16488)
+-- Name: patient_doctor FK_doctor_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient_doctor
+    ADD CONSTRAINT "FK_doctor_id" FOREIGN KEY ("Doctor_id") REFERENCES public."Doctor"("ID");
+
+
+--
+-- TOC entry 2796 (class 2606 OID 16525)
+-- Name: medicine_anamnesis FK_medicine_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.medicine_anamnesis
+    ADD CONSTRAINT "FK_medicine_id" FOREIGN KEY ("Medicine_id") REFERENCES public."Medicine"("ID");
+
+
+--
+-- TOC entry 2789 (class 2606 OID 16549)
+-- Name: Side_effects_of_medicine FK_medicine_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects_of_medicine"
+    ADD CONSTRAINT "FK_medicine_id" FOREIGN KEY ("Medicine_id") REFERENCES public."Medicine"("ID") NOT VALID;
+
+
+--
+-- TOC entry 2792 (class 2606 OID 16483)
+-- Name: patient_doctor FK_patient_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.patient_doctor
+    ADD CONSTRAINT "FK_patient_id" FOREIGN KEY ("Patient_id") REFERENCES public."Patient"("ID");
+
+
+--
+-- TOC entry 2790 (class 2606 OID 16554)
+-- Name: Side_effects_of_medicine FK_side_effects_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Side_effects_of_medicine"
+    ADD CONSTRAINT "FK_side_effects_id" FOREIGN KEY ("Side_effects_id") REFERENCES public."Side_effects"("ID") NOT VALID;
+
+
+--
+-- TOC entry 2791 (class 2606 OID 16457)
+-- Name: Anamnesis Patient_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Anamnesis"
+    ADD CONSTRAINT "Patient_id" FOREIGN KEY ("ID") REFERENCES public."Patient"("ID");
+
+
+-- Completed on 2020-05-14 21:39:21
+
+--
+-- PostgreSQL database dump complete
+--
+
